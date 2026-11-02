@@ -53,6 +53,22 @@ class Library:
         print(f"Book with ID {book_id} not found.")
         return False
 
+    def search_by_title(self, keyword):
+        """Search books whose title contains the keyword (case-insensitive)."""
+        results = [book for book in self.books if keyword.lower() in book.title.lower()]
+        print(f"Found {len(results)} book(s) matching title '{keyword}':")
+        for book in results:
+            print(f"  -> {book}")
+        return results
+
+    def search_by_author(self, author_name):
+        """Search books whose author name contains the query (case-insensitive)."""
+        results = [book for book in self.books if author_name.lower() in book.author.lower()]
+        print(f"Found {len(results)} book(s) by author '{author_name}':")
+        for book in results:
+            print(f"  -> {book}")
+        return results
+
 
 if __name__ == "__main__":
     print("=== Initializing Library Management System ===")
@@ -72,3 +88,8 @@ if __name__ == "__main__":
 
     print("\nReturning book 102:")
     library.return_book(102)
+
+    print("\n--- Testing Book Search Feature ---")
+    library.search_by_title("Great")
+    library.search_by_author("Orwell")
+
