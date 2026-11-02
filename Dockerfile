@@ -14,8 +14,11 @@ COPY requirements.txt .
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application source code and tests
+# Copy source code and application files
 COPY . .
 
-# Run the Python application by default
-CMD ["python", "library.py"]
+# Expose container port for the web service
+EXPOSE 5000
+
+# Run the web application by default
+CMD ["python", "app.py"]
