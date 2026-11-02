@@ -26,5 +26,15 @@ class TestLibraryManagementSystem(unittest.TestCase):
         # Return non-borrowed book
         self.assertFalse(self.lib.return_book(1))
 
+    def test_search_by_title(self):
+        results = self.lib.search_by_title("Hobbit")
+        self.assertEqual(len(results), 1)
+        self.assertEqual(results[0].book_id, 1)
+
+    def test_search_by_author(self):
+        results = self.lib.search_by_author("Huxley")
+        self.assertEqual(len(results), 1)
+        self.assertEqual(results[0].title, "Brave New World")
+
 if __name__ == "__main__":
     unittest.main()
